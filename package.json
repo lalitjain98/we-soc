@@ -1,0 +1,35 @@
+{
+  "name": "we-soc",
+  "version": "1.0.0",
+  "description": "We Soc short for We Social is a social networking website.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lalitjain98/we-soc.git"
+  },
+  "keywords": [
+    "social",
+    "media",
+    "network",
+    "node",
+    "express",
+    "mongo",
+    "mongodb",
+    "ejs"
+  ],
+  "author": "Lalit Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lalitjain98/we-soc/issues"
+  },
+  "homepage": "https://github.com/lalitjain98/we-soc#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.4"
+  }
+}
