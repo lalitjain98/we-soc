@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/lalitjain98/we-soc#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
