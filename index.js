@@ -10,11 +10,11 @@ const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
-app.use((req, res, next)=>{
-    console.log(req.cookies);
-    res.cookie('user_id', parseInt(Math.random()*1000))
-    next()
-})
+// app.use((req, res, next)=>{
+//     console.log(req.cookies);
+//     res.cookie('user_id', parseInt(Math.random()*1000))
+//     next()
+// })
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
