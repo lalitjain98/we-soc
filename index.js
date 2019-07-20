@@ -5,22 +5,51 @@ const path = require('path');
 const port = 5000;
 const cookieParser = require('cookie-parser');
 const db = require('./config/mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local');
+
+// mongo store is used to store session cookie in db
+const MongoStore = require('connect-mongo')(session);
 
 const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
-app.use((req, res, next)=>{
-    console.log(req.cookies);
-    res.cookie('user_id', parseInt(Math.random()*1000))
-    next()
-})
+// app.use((req, res, next)=>{
+//     console.log(req.cookies);
+//     res.cookie('user_id', parseInt(Math.random()*1000))
+//     next()
+// })
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.urlencoded({extended: false}));
+
+app.use(session({
+    name: 'we_soc',
+    secret: 'lalitjain',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000*60*100)
+    },
+    store: new MongoStore({
+        mongooseConnection: db,
+        autoRemove: 'disabled'
+    }, (err)=>{
+        logger.log(err, 'Connect MongoStore Setup Done!')
+    })
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(passport.setAuthenticatedUser);
+app.use((req, res, next)=>{
+    logger.info(res.locals.user);
+    next();
+})
 app.use('/', require('./routes'))
 
 app.listen(port, (err)=>{
