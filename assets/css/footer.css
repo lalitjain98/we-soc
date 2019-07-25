@@ -1,0 +1,21 @@
+footer {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 1rem;
+  color: white;
+  background: linear-gradient(to bottom right, #555, #444); }
+  footer .container {
+    display: flex;
+    align-items: center; }
+    footer .container .credits {
+      padding: 0.5rem;
+      margin: 0 2rem; }
+    footer .container .links-list {
+      display: flex;
+      flex-direction: column; }
+      footer .container .links-list .list-item {
+        padding: 0.25rem; }
+        footer .container .links-list .list-item a {
+          text-decoration: none;
+          color: white; }
+        footer .container .links-list .list-item a:hover {
+          text-decoration: underline; }

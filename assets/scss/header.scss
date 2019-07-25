@@ -1,0 +1,44 @@
+header {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(to bottom right, #55f, #33f);
+    color: white;
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.8);
+    .navbar-brand-wrapper{
+        padding: 0.5rem 1rem;
+        .navbar-brand {
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: white;
+            transition: 0.1s ease-in-out;
+        }
+        .navbar-brand:hover{
+            color: #eee;
+            transform: scale(1.05) rotate(360deg);
+        }
+    }
+    
+    .nav-list{
+        display: flex;
+        align-items: center;
+        .nav-list-item{
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 0 0.5rem;
+            a {
+                color: white;
+                text-decoration: none;
+            }
+            
+            .user-profile-link::before{
+                content: '';
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px){}

@@ -8,10 +8,20 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local');
-
+const sassMiddleware = require('node-sass-middleware');
 // mongo store is used to store session cookie in db
 const MongoStore = require('connect-mongo')(session);
 
+app.use(sassMiddleware({
+    /* Options */
+    src: path.join(__dirname, 'assets/scss'),
+    dest: path.join(__dirname, 'assets/css'),
+    debug: true,
+    outputStyle: 'extended',
+    prefix:  '/css'
+}));
+app.locals.appName = 'We Soc';
+app.locals.appTagLine = 'Be Social';
 const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 app.use(express.urlencoded({extended: false}))

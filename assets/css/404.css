@@ -1,15 +1,14 @@
-.not-found-wrapper{ 
-    margin:-8px; 
-    height:-webkit-fill-available; 
-    display:flex; 
-    align-self:center; 
-    align-items:center; 
-    justify-content: center; 
-    background: linear-gradient(to bottom right, #ffeeaa, #ff5555);
-}
-.not-found{
-    font-size: 2.5rem; 
-    font-family: sans-serif; 
-    color:#7d0852;
-    text-align:center;
-}
+.not-found-wrapper {
+  margin: -8px;
+  height: -webkit-fill-available;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #ffeeaa, #ff5555); }
+
+.not-found {
+  font-size: 2.5rem;
+  font-family: sans-serif;
+  color: #7d0852;
+  text-align: center; }
