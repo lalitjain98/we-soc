@@ -61,7 +61,7 @@ app.use((req, res, next)=>{
     next();
 })
 app.use('/', require('./routes'))
-
 app.listen(port, (err)=>{
+        
     logger.log( err, `Server Running on port ${port}`);
 });

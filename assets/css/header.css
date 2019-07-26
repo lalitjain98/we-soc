@@ -1,3 +1,6 @@
+.link {
+  text-decoration: none;
+}
 header {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
@@ -10,14 +13,15 @@ header {
   header .navbar-brand-wrapper {
     padding: 0.5rem 1rem; }
     header .navbar-brand-wrapper .navbar-brand {
+      text-decoration: none;
       font-size: 2rem;
       font-weight: bold;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       color: white;
-      transition: 0.3s ease-in-out; }
+      transition: 0.5s ease-in-out; }
     header .navbar-brand-wrapper .navbar-brand:hover {
       color: #eee;
-      letter-spacing: 0.1px;
+      letter-spacing: 1px;
       transform: scale(1.05); }
   header .nav-list {
     display: flex;

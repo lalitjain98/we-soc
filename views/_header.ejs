@@ -1,16 +1,19 @@
 <header>
-    <div class="navbar-brand-wrapper">
-        <div class="navbar-brand">
-            <%= locals.appName || 'Navbar Brand'%>
-        </div>
-    </div>
-    <div class="nav-list">
-        <% if (locals.user) {%>
-            <div class="nav-list-item"><a class="user-profile-link" href="/users/profile"><%=user.name%></a></div>
-            <div class="nav-list-item"><a href="/users/sign-out">Log Out</a></div>
-        <% } else {%>
-            <div class="nav-list-item"><a href="/users/sign-in">Sign In</a></div>
-            <div class="nav-list-item"><a href="/users/sign-up">Sign Up</a></div>
-        <% } %>
-    </div>
+	<div class="navbar-brand-wrapper">
+		<a href="/" class="link">
+			<div class="navbar-brand">
+				<%= locals.appName || 'Navbar Brand'%>
+			</div>
+		</a>
+
+	</div>
+	<div class="nav-list">
+		<% if (locals.user) {%>
+		<div class="nav-list-item"><a class="user-profile-link" href="/users/profile"><%=user.name%></a></div>
+		<div class="nav-list-item"><a href="/users/sign-out">Log Out</a></div>
+		<% } else {%>
+		<div class="nav-list-item"><a href="/users/sign-in">Sign In</a></div>
+		<div class="nav-list-item"><a href="/users/sign-up">Sign Up</a></div>
+		<% } %>
+	</div>
 </header>
