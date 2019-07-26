@@ -2,9 +2,19 @@ const User = require('../models/user')
 const logger = require('../util/logger');
 
 module.exports.profile = function (req, res) {
-	return res.render('user_profile', {
-		title: "User Profile Page"
-	});
+
+	User.findById(req.params.id, (err, user)=>{
+		if(err){
+			logger.err(err);
+			return;
+		}
+		return res.render('user_profile', {
+			title: "User Profile Page",
+			profile_user: user 
+		});
+	
+	})
+
 }
 
 module.exports.showAll = function (req, res) {
@@ -55,4 +65,23 @@ module.exports.createSession = function (req, res) {
 module.exports.destroySession = function (req, res) {
 	req.logout();
 	return res.redirect('/users/sign-in');
+}
+
+module.exports.update = (req, res)=>{
+	if(req.user.id == req.params.id){
+		User.findByIdAndUpdate(
+			req.params.id, 
+			{
+				email: req.body.email, 
+				name: req.body.name
+			},
+			(err, user)=>{
+				if(err){
+					logger.err(err);
+					return;
+				}
+				return res.redirect('back');
+			}
+		)
+	}
 }

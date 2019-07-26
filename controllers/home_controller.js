@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 const logger = require('../util/logger');
 
 module.exports.home = function(req, res){
@@ -16,13 +17,20 @@ module.exports.home = function(req, res){
             return;
         }
         logger.info(posts)
-        return res.render(
-            'home', 
-            { 
-                title: 'Home Page', 
-                posts
+        User.find({}, (err, users)=>{
+            if(err){
+                logger.err(err);
+                return;
             }
-        );
+            return res.render(
+                'home', 
+                { 
+                    title: 'Home Page', 
+                    posts,
+                    users
+                }
+            );    
+        })
     });
 }
 

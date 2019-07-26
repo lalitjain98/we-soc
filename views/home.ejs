@@ -1,37 +1,30 @@
 We Soc / <%= title %>
-<section id="feed-posts">
-	<h4>Posts</h4>
-	<% if(locals.user) {%>
-	<form action="/posts/create" method="POST" id="new-post-form">
-		<textarea required name="content" id="content" cols="30" rows="5" placeholder="Type Here..."></textarea>
-		<input type="submit" value="create Post">
-	</form>
-	<% } %>
-	<div id="posts-list-container">
-		<% for(let post of locals.posts || []) { %>
-		<div id="post-<%= post._id%>">
-			<div><%= post.content%></div>
-			<div><%= post.user.name%> </div>
-			<div class="comments-container" id="post-<%=post._id%>-comments-container">
-				<div class="comments-list-container">
-					<% for(let comment of post.comments || []) { %>
-					<div class="comment-container">
-						<div><%= comment.content%></div>
-						<div>- <%= comment.user.name%> </div>
-					</div>
+<link rel="stylesheet" href="/css/home.css">
+<div id="home-container">
+	<section id="feed-posts">
+			<h4 class="section-heading">Posts</h4>
+			<div id="posts-list-container">
+					<% for(let post of locals.posts || []) { %>
+						<%- include _post -%>
 					<% } %>
-				</div>
-				<div class="comment-form-container">
-					<form action="/posts/<%=post._id%>/comments/create" method="POST" id="post-<%=post._id%>-new-comment-form">
-						<textarea required name="content" id="content" cols="30" rows="1" placeholder="Type Here..."></textarea>
-						<input type="submit" value="create Post">
-					</form>
-				</div>
-
-
 			</div>
-		</div>
+			<% if(locals.user) {%>
+			<form action="/posts/create" method="POST" id="new-post-form">
+				<textarea required name="content" id="content" cols="30" rows="5" placeholder="Type Here..."></textarea>
+				<input type="submit" value="create Post">
+			</form>
+			<% } %>
+			
+		
+	</section>		
+	<section id="user-friends">
+		<h4 class="section-heading">Friends</h4>
+		<% for(let profile of users||[]) { %>
+			<p>
+				<a href="/users/profile/<%=profile.id%>">
+					<%=profile.name%>
+				</a>
+			</p>
 		<% } %>
-	</div>
-
-</section>
+	</section>
+</div>

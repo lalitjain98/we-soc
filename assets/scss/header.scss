@@ -14,11 +14,12 @@ header {
             font-weight: bold;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             color: white;
-            transition: 0.1s ease-in-out;
+            transition: 0.3s ease-in-out;
         }
         .navbar-brand:hover{
             color: #eee;
-            transform: scale(1.05) rotate(360deg);
+            letter-spacing: 1px;
+            transform: scale(1.05);
         }
     }
     

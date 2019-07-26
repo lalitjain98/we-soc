@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/css/post.css">
+
+<div id="post-<%= post._id%>" class="post-container">
+	<div class="post-content-container">
+		<div>
+			<div class="post-content"><%= post.content%></div>
+			<div class="post-author"><%= post.user.name%> </div>
+		</div>
+		<% if(locals.user && locals.user.id == post.user.id) {%>
+		<a href="/posts/destroy/<%=post._id%>">X</a>
+		<%}%>
+	</div>
+<div class="comments-container" id="post-<%=post._id%>-comments-container">
+		<div class="comments-list-container">
+			<% for(let comment of post.comments || []) { %>
+			<%- include _comment -%>
+			<% } %>
+		</div>
+		<div class="comment-form-container">
+			<form action="/posts/<%=post._id%>/comments/create" method="POST" id="post-<%=post._id%>-new-comment-form">
+				<textarea required name="content" id="content" cols="30" rows="1" placeholder="Type Here..."></textarea>
+				<input type="submit" value="create Comment">
+			</form>
+		</div>
+
+
+	</div>
+</div>

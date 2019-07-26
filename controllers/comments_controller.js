@@ -34,3 +34,30 @@ module.exports.createComment = (req, res)=>{
 
 
 }
+
+module.exports.destroy = (req, res) => {
+    Comment.findById(req.params.id, (err, comment)=>{
+        if(err){
+            logger.err(err);
+            return;
+        }
+        if(comment.user == req.user.id){
+            const postId = comment.post;
+            comment.remove((err)=>{
+                if(err){
+                    logger.err(err);
+                    return;
+                }
+                Post.findById(postId, (err, post)=>{
+                    if(err){
+                        logger.err(err);
+                        return;
+                    }
+                    post.comments = post.comments.filter(item=>item != req.params.id);
+                    post.save();
+                    return res.redirect('back');   
+                })
+            })
+        }
+    })
+}

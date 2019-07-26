@@ -1,6 +1,9 @@
 body {
   margin: 0; }
 
+a {
+  text-decoration: none; }
+
 #layout-main {
   padding: 0rem 1rem;
   min-height: 100vh; }
