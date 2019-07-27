@@ -5,7 +5,8 @@ const logger = require('../util/logger');
 module.exports.home = async function(req, res){
     try{
         let posts = await Post.find({})
-        .populate('user')
+        .sort('-createdAt')
+        .populate('user', ['name', 'createdAt', '_id'])
         .populate({
             path:'comments',
             populate: {

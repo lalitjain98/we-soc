@@ -3,17 +3,18 @@
 <div id="home-container">
 	<section id="feed-posts">
 			<h4 class="section-heading">Posts</h4>
+			<% if(locals.user) {%>
+				<form action="/posts/create" method="POST" id="new-post-form">
+					<textarea required name="content" id="content" cols="30" rows="5" placeholder="Type Here..."></textarea>
+					<input type="submit" value="create Post">
+				</form>
+			<% } %>
 			<div id="posts-list-container">
 					<% for(let post of locals.posts || []) { %>
 						<%- include _post -%>
 					<% } %>
 			</div>
-			<% if(locals.user) {%>
-			<form action="/posts/create" method="POST" id="new-post-form">
-				<textarea required name="content" id="content" cols="30" rows="5" placeholder="Type Here..."></textarea>
-				<input type="submit" value="create Post">
-			</form>
-			<% } %>
+			
 			
 		
 	</section>		
@@ -28,3 +29,4 @@
 		<% } %>
 	</section>
 </div>
+<script src="/js/home_posts.js"></script>

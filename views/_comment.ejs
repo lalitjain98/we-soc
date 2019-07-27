@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/css/comment.css">
 
-<div class="comment-container">
+<div id="comment-<%=comment._id%>" class="comment-container">
     <% if(locals.user && locals.user.id == comment.user.id) {%>
-        <div><a href="/comments/destroy/<%=comment._id%>">Delete Comment</a></div>
+        <div><a class="delete-comment" href="/comments/destroy/<%=comment._id%>">Delete Comment</a></div>
         <%}%>
     <div><%= comment.content%></div>
     <div>- <%= comment.user.name%> </div>
