@@ -1,22 +1,28 @@
+div{
+    box-sizing: border-box;
+}
 #home-container {
     display: flex;
     width: 100%;
     margin: auto;
     min-height: 100vh;
+    justify-content: stretch;
+    align-items: stretch;
+    // flex-wrap: wrap;
     section {
         display: flex;
         flex-direction: column;
         padding: 1rem;
         margin: 1rem;
         margin-top: 0rem;
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        border-radius: 1rem;
+        // border: 1px solid rgba(0, 0, 0, 0.3);
+        // border-radius: 1rem;
     }
     .section-heading {
         margin: 0.5rem;
         color: #222;
         font-size: 2rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        // border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     }
     #feed-posts {
         width: 70%;
@@ -27,5 +33,6 @@
     }
     #user-friends {
         width: 30%;
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
     }
 }

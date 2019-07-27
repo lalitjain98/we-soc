@@ -2,62 +2,49 @@ const Comment = require('../models/comment');
 const logger = require('../util/logger');
 const Post = require('../models/post');
 
-module.exports.createComment = (req, res)=>{
+module.exports.createComment = async (req, res)=>{
     logger.info("createComment")
     console.log(req.params)
-
-    Post.findById(req.params.id, (err, post)=>{
-        if(err || !post){
-            logger.err(err || "Post Not Found!");
-            return;
-        }
-        Comment.create({
+    try{
+        let post = await Post.findById(req.params.id);
+        let comment = await Comment.create({
             content: req.body.content,
             post: req.params.id,
             user: req.user._id
-        }, (err, comment)=>{
-            logger.log(err, comment)
-            if(err){
-                logger.err(err);
-                return;
-            }
-            Post.findByIdAndUpdate(comment.post, {$push: {comments: comment._id}}, (err, post)=>{
-                logger.log(err, post)
-                if(err){
-                    logger.err(err);
-                    return;
-                }
-                return res.redirect('back');
-            });
         });
-    })
-
-
+        let updatePost = await Post.findByIdAndUpdate(comment.post, {$push: {comments: comment._id}});
+        req.flash('success', 'Created Comment!')
+        return res.redirect('back');
+    }
+    catch(err){
+        logger.err(err)
+        return;
+    }
 }
 
-module.exports.destroy = (req, res) => {
-    Comment.findById(req.params.id, (err, comment)=>{
-        if(err){
-            logger.err(err);
-            return;
-        }
+module.exports.destroy = async (req, res) => {
+
+    try{
+        let comment = await Comment.findById(req.params.id);
         if(comment.user == req.user.id){
             const postId = comment.post;
-            comment.remove((err)=>{
-                if(err){
-                    logger.err(err);
-                    return;
-                }
-                Post.findById(postId, (err, post)=>{
-                    if(err){
-                        logger.err(err);
-                        return;
-                    }
-                    post.comments = post.comments.filter(item=>item != req.params.id);
-                    post.save();
-                    return res.redirect('back');   
-                })
-            })
+            comment.remove();
+            let post = Post.findById(postId)
+            post.comments = post.comments.filter(item=>item != req.params.id);
+            post.save();
+            req.flash('success', 'Comment Deleted!');
+        }else{
+            req.flash('error', 'You are not Authorized to delete this comment!')
         }
-    })
+        return res.redirect('back');  
+    }
+    catch(err){
+        logger.err(err)
+        return;
+    }
 }
+// try{}
+// catch(err){
+//     logger.err(err)
+//     return;
+// }

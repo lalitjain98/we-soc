@@ -1,25 +1,28 @@
+div {
+  box-sizing: border-box; }
+
 #home-container {
   display: flex;
   width: 100%;
   margin: auto;
-  min-height: 100vh; }
+  min-height: 100vh;
+  justify-content: stretch;
+  align-items: stretch; }
   #home-container section {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     margin: 1rem;
-    margin-top: 0rem;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 1rem; }
+    margin-top: 0rem; }
   #home-container .section-heading {
     margin: 0.5rem;
     color: #222;
-    font-size: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+    font-size: 2rem; }
   #home-container #feed-posts {
     width: 70%; }
     #home-container #feed-posts #posts-list-container {
       display: flex;
       flex-direction: column; }
   #home-container #user-friends {
-    width: 30%; }
+    width: 30%;
+    border-left: 1px solid rgba(0, 0, 0, 0.2); }

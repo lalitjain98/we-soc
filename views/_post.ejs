@@ -16,12 +16,14 @@
 			<%- include _comment -%>
 			<% } %>
 		</div>
-		<div class="comment-form-container">
-			<form action="/posts/<%=post._id%>/comments/create" method="POST" id="post-<%=post._id%>-new-comment-form">
-				<textarea required name="content" id="content" cols="30" rows="1" placeholder="Type Here..."></textarea>
-				<input type="submit" value="create Comment">
-			</form>
-		</div>
+		<% if(locals.user) {%>
+			<div class="comment-form-container">
+				<form action="/posts/<%=post._id%>/comments/create" method="POST" id="post-<%=post._id%>-new-comment-form">
+					<textarea required name="content" id="content" cols="30" rows="1" placeholder="Type Here..."></textarea>
+					<input type="submit" value="create Comment">
+				</form>
+			</div>
+		<%}%>
 
 
 	</div>

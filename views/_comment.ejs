@@ -4,6 +4,6 @@
     <% if(locals.user && locals.user.id == comment.user.id) {%>
         <div><a href="/comments/destroy/<%=comment._id%>">Delete Comment</a></div>
         <%}%>
-					<div><%= comment.content%></div>
+    <div><%= comment.content%></div>
     <div>- <%= comment.user.name%> </div>
 </div>

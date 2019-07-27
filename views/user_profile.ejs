@@ -1,12 +1,18 @@
-We Soc / <%= title %>
+<!-- We Soc / <%= title %> -->
 
-<% if(user.id == profile_user.id) {%>
+<% if(profile_user && user.id == profile_user.id) {%>
     <form action="/users/update/<%=profile_user.id%>" method="POST">
         <input type="text" required value="<%=profile_user.name%>" name="name">
         <input type="email" required value="<%=profile_user.email%>" name="email">
         <input type="submit">
     </form>
-<% } else {%>
+<% } else if(profile_user){%>
     <p><%= profile_user.name%></p>
     <p><%= profile_user.email%></p>
+<% } else {%>
+    <form action="/users/update/<%=user.id%>" method="POST">
+        <input type="text" required value="<%=user.name%>" name="name">
+        <input type="email" required value="<%=user.email%>" name="email">
+        <input type="submit">
+    </form>
 <% } %>

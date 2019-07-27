@@ -5,15 +5,18 @@ const logger = require('../util/logger');
 
 passport.use(new LocalStrategy({
     usernameField: 'email', 
-}, (email, password, done)=>{
+    passReqToCallback: true
+}, (req, email, password, done)=>{
     
     // find user and establish identity
     User.findOne({email}, (err, user)=>{
         if (err){
+            req.flash('error', err);
             logger.err(err);
             return done(err);
         }
         if(!user || user.password !== password){
+            req.flash('error', 'Invalid Email or Password');
             logger.err('Invalid Email or Password')
             return done(null, false);
         }
@@ -45,6 +48,7 @@ passport.checkUnauthenticated = (req, res, next)=>{
     logger.info(!req.isAuthenticated());
     if(!req.isAuthenticated()){
         // allow user to access resource
+        // req.flash('error', 'You are not Signed In!');
         logger.info('User Not Authenticated');
         return next();
     }
@@ -61,6 +65,7 @@ passport.checkAuthentication = (req, res, next)=>{
         return next();
     }
     // if user is not signed in
+    req.flash('error', 'You need to Sign In!');
     return res.redirect('/users/sign-in')
 }
 
